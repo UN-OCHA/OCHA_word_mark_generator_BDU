@@ -385,14 +385,31 @@
             try {
                 // Try to load curated icons first
                 try {
+                    console.log('Attempting to load curated-icons.json...');
                     const response = await fetch('./curated-icons.json');
+                    console.log('Fetch response:', response.status, response.ok);
                     if (response.ok) {
-                        icons = await response.json();
+                        const data = await response.json();
+                        console.log('Loaded curated data:', {
+                            isArray: Array.isArray(data),
+                            hasIcons: !!data.icons,
+                            iconsCount: data.icons ? data.icons.length : 0,
+                            firstIcon: data.icons ? data.icons[0] : null
+                        });
+                        // Handle both old array format and new object format with icons array
+                        if (Array.isArray(data)) {
+                            icons = data;
+                        } else if (data.icons && Array.isArray(data.icons)) {
+                            icons = data.icons;
+                        } else {
+                            throw new Error('Invalid curated-icons.json format');
+                        }
+                        console.log('Final icons array length:', icons.length);
                         renderIcons(icons);
                         return;
                     }
                 } catch (e) {
-                    console.log('No curated-icons.json found, loading from humanitarian-icons repository');
+                    console.log('No curated-icons.json found, loading from humanitarian-icons repository', e);
                 }
 
                 const iconMap = new Map();
@@ -443,7 +460,10 @@
         function renderIcons(iconsToRender) {
             const container = document.getElementById('iconSelector');
 
-            if (iconsToRender.length === 0) {
+            // Filter out icons with empty or invalid URLs
+            const validIcons = iconsToRender.filter(icon => icon.url && icon.url.trim() !== '' && icon.url.endsWith('.svg'));
+
+            if (validIcons.length === 0) {
                 container.innerHTML = '<div class="no-results">No icons found</div>';
                 return;
             }
@@ -451,7 +471,7 @@
             const grid = document.createElement('div');
             grid.className = 'icon-grid';
 
-            iconsToRender.forEach(icon => {
+            validIcons.forEach(icon => {
                 const item = document.createElement('div');
                 item.className = 'icon-item';
                 item.innerHTML = `

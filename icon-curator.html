@@ -43,6 +43,7 @@
             padding-bottom: 20px;
             border-bottom: 2px solid #eee;
             flex-wrap: wrap;
+            align-items: center;
         }
 
         button {
@@ -99,12 +100,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            cursor: pointer;
             user-select: none;
-        }
-
-        .category-header:hover {
-            background: #007ab8;
         }
 
         .category-title {
@@ -262,16 +258,6 @@
             background: #e0e0e0;
         }
 
-        .btn-delete {
-            background: #dc3545;
-            color: white;
-            padding: 6px 12px;
-            font-size: 12px;
-        }
-
-        .btn-delete:hover {
-            background: #c82333;
-        }
     </style>
 </head>
 <body>
@@ -280,11 +266,11 @@
         <p class="subtitle">Organize icons by category and configure vertical adjustments for wordmark generation</p>
 
         <div class="actions">
-            <button class="btn-primary" onclick="addCategory()">+ Add Category</button>
-            <button class="btn-secondary" onclick="expandAll()">Expand All</button>
-            <button class="btn-secondary" onclick="collapseAll()">Collapse All</button>
-            <button class="btn-primary" onclick="exportJSON()">Export JSON</button>
-            <button class="btn-secondary" onclick="importJSON()">Import JSON</button>
+            <button class="btn-primary" onclick="exportJSON()" style="font-size: 16px; padding: 12px 24px;">📥 Export JSON</button>
+            <div style="display: flex; gap: 8px; margin-left: auto;">
+                <button class="btn-secondary" id="toggleSelectBtn" onclick="toggleSelectAll()">☑️ Deselect All</button>
+                <button class="btn-secondary" id="toggleExpandBtn" onclick="toggleExpandAll()">▼ Collapse All</button>
+            </div>
         </div>
 
         <div class="stats">
@@ -296,7 +282,6 @@
         </div>
     </div>
 
-    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleImport(event)">
     <input type="file" id="familyCsvFile" accept=".csv,text/csv" style="display: none;" onchange="handleFamilyCSVImport(event)">
     <input type="file" id="urlCsvFile" accept=".csv,text/csv" style="display: none;" onchange="handleUrlCSVImport(event)">
 
@@ -322,6 +307,10 @@
             variants.add(base);
             // Match CSV names like "... (CCCM)" to repo filenames without abbreviation suffixes
             variants.add(base.replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim());
+            // CSV uses "Hide" while repository filename is "hidden.svg"
+            if (normalizeIconName(base) === 'hide') {
+                variants.add('hidden');
+            }
 
             const normalized = [];
             variants.forEach(v => {
@@ -573,6 +562,37 @@
                 // Do not auto-add repository icons that are not in the Family/Icon CSV.
                 // This keeps curator structure aligned with the spreadsheet.
 
+                // Try to load curated-icons.json to restore selection state
+                try {
+                    const curatedResponse = await fetch('./curated-icons.json');
+                    if (curatedResponse.ok) {
+                        const curatedData = await curatedResponse.json();
+                        if (curatedData.icons && Array.isArray(curatedData.icons)) {
+                            // First, mark all icons as not included
+                            icons.forEach(icon => icon.included = false);
+
+                            // Then mark icons that are in curated-icons.json as included
+                            const curatedNames = new Set(curatedData.icons.map(i => i.name));
+                            icons.forEach(icon => {
+                                if (curatedNames.has(icon.name)) {
+                                    icon.included = true;
+                                    // Also restore vertical adjustment and category if available
+                                    const curatedIcon = curatedData.icons.find(i => i.name === icon.name);
+                                    if (curatedIcon) {
+                                        icon.verticalAdjustment = curatedIcon.verticalAdjustment || 0;
+                                        if (curatedIcon.category) {
+                                            icon.category = curatedIcon.category;
+                                        }
+                                    }
+                                }
+                            });
+                            console.log('Loaded curated selection state:', curatedNames.size, 'icons selected');
+                        }
+                    }
+                } catch (err) {
+                    console.log('No curated-icons.json found, defaulting to all icons selected');
+                }
+
                 buildCategoriesFromIcons();
                 renderCategories();
                 updateStats();
@@ -656,35 +676,25 @@
 
                 const titleDiv = document.createElement('div');
                 titleDiv.className = 'category-title';
-
-                const nameInput = document.createElement('input');
-                nameInput.type = 'text';
-                nameInput.value = category.name;
-                nameInput.onclick = (e) => e.stopPropagation();
-                nameInput.onchange = (e) => {
-                    const oldName = category.name;
-                    const newName = e.target.value;
-                    category.name = newName;
-                    icons.forEach(icon => {
-                        if (icon.category === oldName) {
-                            icon.category = newName;
-                        }
-                    });
-                    buildCategoriesFromIcons();
-                    renderCategories();
-                    updateStats();
+                titleDiv.style.cursor = 'pointer';
+                titleDiv.onclick = () => {
+                    body.classList.toggle('collapsed');
                 };
+
+                const nameSpan = document.createElement('span');
+                nameSpan.textContent = category.name;
+                nameSpan.style.fontWeight = '700';
+                nameSpan.style.fontSize = '18px';
 
                 const count = document.createElement('span');
                 count.className = 'category-count';
                 count.textContent = `${category.icons.length} icons`;
 
-                titleDiv.appendChild(nameInput);
+                titleDiv.appendChild(nameSpan);
                 titleDiv.appendChild(count);
 
                 const controls = document.createElement('div');
                 controls.className = 'category-controls';
-                controls.onclick = (e) => e.stopPropagation();
 
                 const selectAllLabel = document.createElement('label');
                 selectAllLabel.textContent = 'All: ';
@@ -705,28 +715,8 @@
                 controls.appendChild(selectAllLabel);
                 controls.appendChild(selectAllCheckbox);
 
-                if (category.name !== 'Uncategorized') {
-                    const deleteBtn = document.createElement('button');
-                    deleteBtn.className = 'btn-delete';
-                    deleteBtn.textContent = 'Delete';
-                    deleteBtn.onclick = () => {
-                        if (confirm(`Delete category "${category.name}"? Icons will move to Uncategorized.`)) {
-                            category.icons.forEach(icon => icon.category = 'Uncategorized');
-                            categories.splice(catIndex, 1);
-                            buildCategoriesFromIcons();
-                            renderCategories();
-                            updateStats();
-                        }
-                    };
-                    controls.appendChild(deleteBtn);
-                }
-
                 header.appendChild(titleDiv);
                 header.appendChild(controls);
-
-                header.onclick = () => {
-                    body.classList.toggle('collapsed');
-                };
 
                 const body = document.createElement('div');
                 body.className = 'category-body';
@@ -829,36 +819,57 @@
         function updateStats() {
             const selected = icons.filter(icon => icon.included).length;
             document.getElementById('selectedCount').textContent = selected;
-        }
 
-        function expandAll() {
-            document.querySelectorAll('.category-body').forEach(body => {
-                body.classList.remove('collapsed');
-            });
-        }
-
-        function collapseAll() {
-            document.querySelectorAll('.category-body').forEach(body => {
-                body.classList.add('collapsed');
-            });
-        }
-
-        function addCategory() {
-            const name = prompt('Enter category name:');
-            if (name && name.trim()) {
-                categories.push({ name: name.trim(), icons: [] });
-                renderCategories();
+            // Update toggle button state
+            const toggleBtn = document.getElementById('toggleSelectBtn');
+            if (toggleBtn) {
+                const allSelected = icons.length > 0 && icons.every(icon => icon.included);
+                toggleBtn.textContent = allSelected ? '☑️ Deselect All' : '☐ Select All';
             }
         }
 
-        function exportJSON() {
+        function toggleSelectAll() {
+            const btn = document.getElementById('toggleSelectBtn');
+            const allSelected = icons.every(icon => icon.included);
+
+            if (allSelected) {
+                // Deselect all
+                icons.forEach(icon => icon.included = false);
+                btn.textContent = '☐ Select All';
+            } else {
+                // Select all
+                icons.forEach(icon => icon.included = true);
+                btn.textContent = '☑️ Deselect All';
+            }
+
+            renderCategories();
+            updateStats();
+        }
+
+        function toggleExpandAll() {
+            const btn = document.getElementById('toggleExpandBtn');
+            const bodies = document.querySelectorAll('.category-body');
+            const allExpanded = Array.from(bodies).every(body => !body.classList.contains('collapsed'));
+
+            if (allExpanded) {
+                // Collapse all
+                bodies.forEach(body => body.classList.add('collapsed'));
+                btn.textContent = '▶ Expand All';
+            } else {
+                // Expand all
+                bodies.forEach(body => body.classList.remove('collapsed'));
+                btn.textContent = '▼ Collapse All';
+            }
+        }
+
+        async function exportJSON() {
             const data = {
                 categories: categories.map(cat => ({
                     name: cat.name,
                     icons: cat.icons.map(icon => icon.name)
                 })),
                 icons: icons
-                    .filter(icon => icon.included)
+                    .filter(icon => icon.included && icon.url && icon.url.trim() !== '')
                     .map(icon => ({
                         name: icon.name,
                         url: icon.url,
@@ -868,58 +879,47 @@
             };
 
             const json = JSON.stringify(data, null, 2);
-            const blob = new Blob([json], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
 
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'curated-icons.json';
-            a.click();
+            // Try to save using File System Access API (modern browsers)
+            try {
+                // Check if File System Access API is supported
+                if ('showSaveFilePicker' in window) {
+                    const options = {
+                        suggestedName: 'curated-icons.json',
+                        types: [{
+                            description: 'JSON Files',
+                            accept: { 'application/json': ['.json'] }
+                        }]
+                    };
 
-            URL.revokeObjectURL(url);
+                    const handle = await window.showSaveFilePicker(options);
+                    const writable = await handle.createWritable();
+                    await writable.write(json);
+                    await writable.close();
 
-            alert(`Exported ${data.icons.length} icons with ${categories.length} categories to curated-icons.json`);
-        }
-
-        function importJSON() {
-            document.getElementById('importFile').click();
-        }
-
-        function handleImport(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                try {
-                    const data = JSON.parse(e.target.result);
-
-                    if (data.categories) {
-                        categories = data.categories.map(cat => ({ ...cat, icons: [] }));
-                    }
-
-                    if (data.icons) {
-                        // Merge imported data with current icons
-                        data.icons.forEach(importedIcon => {
-                            const existing = icons.find(i => i.name === importedIcon.name);
-                            if (existing) {
-                                existing.included = true;
-                                existing.verticalAdjustment = importedIcon.verticalAdjustment || 0;
-                                existing.category = importedIcon.category || 'Uncategorized';
-                            }
-                        });
-                    }
-
-                    buildCategoriesFromIcons();
-                    renderCategories();
-                    updateStats();
-
-                    alert('Import successful!');
-                } catch (error) {
-                    alert('Error importing file: ' + error.message);
+                    alert(`Exported ${data.icons.length} icons with ${categories.length} categories to curated-icons.json`);
+                } else {
+                    // Fallback to download
+                    throw new Error('File System Access API not supported');
                 }
-            };
-            reader.readAsText(file);
+            } catch (err) {
+                // User cancelled or API not supported - fallback to download
+                if (err.name !== 'AbortError') {
+                    console.log('Falling back to download method');
+                }
+
+                const blob = new Blob([json], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'curated-icons.json';
+                a.click();
+
+                URL.revokeObjectURL(url);
+
+                alert(`Downloaded ${data.icons.length} icons with ${categories.length} categories as curated-icons.json\n\nNote: Save this file to the same folder as the generator.`);
+            }
         }
 
         // Initialize

@@ -1,393 +1,387 @@
-﻿Family,Icon Name,Font code,PPT
-Clusters,Camp Coordination and Camp Management (CCCM),,Yes
-Clusters,Early Recovery,,Yes
-Clusters,Education,,Yes
-Clusters,Emergency Telecommunications,,Yes
-Clusters,Food Security,,Yes
-Clusters,Health,,Yes
-Clusters,Logistics,,Yes
-Clusters,Nutrition,,Yes
-Clusters,Protection,,Yes
-Clusters,Shelter,,Yes
-Clusters,Water Sanitation and Hygiene,,Yes
-Others,Agriculture,,Yes
-Others,Child care Child friendly,,Yes
-Others,Child protection,,Yes
-Others,Coordination,,Yes
-Others,Environment,,Yes
-Others,Fishery,,Yes
-Others,Logistics and Telecommunications,,
-Others,Multicluster sector,,Yes
-Others,Rule of law and justice,,Yes
-Others,Safety and security,,Yes
-Others,"Shelter, Land and Camp Coordination",,
-"Disasters, hazards and crises",Anticipatory Action,,No
-"Disasters, hazards and crises",Cold wave,,Yes
-"Disasters, hazards and crises",Conflict,,Yes
-"Disasters, hazards and crises",Cyclone,,Yes
-"Disasters, hazards and crises",Drought,,Yes
-"Disasters, hazards and crises",Earthquake,,Yes
-"Disasters, hazards and crises",Epidemic,,Yes
-"Disasters, hazards and crises",Famine,,Yes
-"Disasters, hazards and crises",Fire,,Yes
-"Disasters, hazards and crises",Flash flood,,Yes
-"Disasters, hazards and crises",Flood,,Yes
-"Disasters, hazards and crises",Heatwave,,Yes
-"Disasters, hazards and crises",Heavy rain,,Yes
-"Disasters, hazards and crises",Humanitarian access,,Yes
-"Disasters, hazards and crises",Insect infestation,,Yes
-"Disasters, hazards and crises",Internally displaced,,Yes
-"Disasters, hazards and crises",Landslide mudslide,,Yes
-"Disasters, hazards and crises",Locust infestation,,Yes
-"Disasters, hazards and crises",Population return,,Yes
-"Disasters, hazards and crises",Poverty,,Yes
-"Disasters, hazards and crises",Refugee,,Yes
-"Disasters, hazards and crises",Resilience,,No
-"Disasters, hazards and crises",Snow avalanche,,Yes
-"Disasters, hazards and crises",Snowfall,,Yes
-"Disasters, hazards and crises",Storm,,Yes
-"Disasters, hazards and crises",Storm surge,,Yes
-"Disasters, hazards and crises",Technological disaster,,Yes
-"Disasters, hazards and crises",Tornado,,Yes
-"Disasters, hazards and crises",Tsunami,,Yes
-"Disasters, hazards and crises",Violent wind,,Yes
-"Disasters, hazards and crises",Volcano,,Yes
-"Disasters, hazards and crises",Worm infestation,,No
-Socioeconomic and development,Debris management,,Yes
-Socioeconomic and development,Livelihood,,Yes
-Socioeconomic and development,Livestock,,Yes
-Socioeconomic and development,Population growth,,Yes
-Socioeconomic and development,Reconstruction,,Yes
-Socioeconomic and development,Rural,,Yes
-Socioeconomic and development,Rural exodus,,Yes
-Socioeconomic and development,Trade and market,,Yes
-Socioeconomic and development,Urban,,Yes
-Socioeconomic and development,Urban rural,,Yes
-People,Affected population,,Yes
-People,Child combatant,,Yes
-People,Children,,Yes
-People,Dead,,Yes
-People,Drowned,,Yes
-People,Elderly,,Yes
-People,Gender,,No
-People,Indigenous people,,Yes
-People,Infant,,Yes
-People,Injured,,Yes
-People,Missing,,Yes
-People,National army,,Yes
-People,Peacekeeping force,,Yes
-People,People affected,,No
-People,People covered,,No
-People,People in need,,Yes
-People,People in need 2,,No
-People,People reached,,No
-People,People targeted,,Yes
-People,People targeted 2,,No
-People,People with physical impairments,,Yes
-People,Person 1,,Yes
-People,Person 2,,Yes
-People,Pregnant,,Yes
-People,Rebel,,Yes
-People,Sex,,Yes
-Activities Strategy,Advocacy,,Yes
-Activities Strategy,Agile,,Yes
-Activities Strategy,Analysis,,Yes
-Activities Strategy,Assessment,,Yes
-Activities Strategy,Cash transfer,,Yes
-Activities Strategy,Civil military coordination,,Yes
-Activities Strategy,Community engagement,,Yes
-Activities Strategy,Coordinated assessment,,Yes
-Activities Strategy,Deployment,,Yes
-Activities Strategy,Financing,,Yes
-Activities Strategy,Fund,,Yes
-Activities Strategy,Gap analysis,,Yes
-Activities Strategy,Humanitarian programme cycle,,Yes
-Activities Strategy,Information management,,Yes
-Activities Strategy,Information technology,,Yes
-Activities Strategy,Innovation,,Yes
-Activities Strategy,Leadership,,Yes
-Activities Strategy,Learning,,Yes
-Activities Strategy,Meeting,,Yes
-Activities Strategy,Monitoring,,Yes
-Activities Strategy,Needs assessment,,Yes
-Activities Strategy,Partnership,,Yes
-Activities Strategy,Policy,,Yes
-Activities Strategy,Preparedness,,Yes
-Activities Strategy,Public information,,Yes
-Activities Strategy,Reporting,,Yes
-Activities Strategy,Response,,Yes
-Activities Strategy,Scale down operation,,Yes
-Activities Strategy,Scale up operation,,Yes
-Activities Strategy,Search-and-rescue,,No
-Activities Strategy,Services and tools,,Yes
-Activities Strategy,Sexual and reproductive health,,Yes
-Activities Strategy,Staff management,,Yes
-Activities Strategy,Top Ranking,,Yes
-Activities Strategy,Training,,Yes
-Product type,Calendar,,Yes
-Product type,Chart,,Yes
-Product type,Data,,Yes
-Product type,Document,,Yes
-Product type,Film,,Yes
-Product type,Location,,Yes
-Product type,Map,,Yes
-Product type,Photo,,Yes
-Product type,Report,,Yes
-Product type,Table,,Yes
-Product type,Video,,Yes
-Food and non-food items,Blanket,,Yes
-Food and non-food items,Bottled water,,Yes
-Food and non-food items,Bucket,,Yes
-Food and non-food items,Clothing,,Yes
-Food and non-food items,Detergent,,Yes
-Food and non-food items,Flour,,Yes
-Food and non-food items,Food,,Yes
-Food and non-food items,Infant feeding bottle,,Yes
-Food and non-food items,Kitchen set,,Yes
-Food and non-food items,Mattress,,Yes
-Food and non-food items,Medical supply,,Yes
-Food and non-food items,Medicine,,Yes
-Food and non-food items,Mosquito net,,Yes
-Food and non-food items,Non food items,,Yes
-Food and non-food items,Non food items 2,,Yes
-Food and non-food items,Oil,,Yes
-Food and non-food items,Plastic sheeting,,Yes
-Food and non-food items,Relief goods,,Yes
-Food and non-food items,Rice,,Yes
-Food and non-food items,Salt,,Yes
-Food and non-food items,Soap,,Yes
-Food and non-food items,Stove,,Yes
-Food and non-food items,Sugar,,Yes
-Food and non-food items,Tarpaulin,,Yes
-Food and non-food items,Tent,,Yes
-Food and non-food items,Vaccine,,Yes
-Water sanitation and hygiene,Borehole,,Yes
-Water sanitation and hygiene,Communal latrine,,Yes
-Water sanitation and hygiene,Latrine cabin,,Yes
-Water sanitation and hygiene,Potable water,,Yes
-Water sanitation and hygiene,Potable water source,,Yes
-Water sanitation and hygiene,Sanitation,,Yes
-Water sanitation and hygiene,Shower,,Yes
-Water sanitation and hygiene,Solid waste,,Yes
-Water sanitation and hygiene,Spring water,,Yes
-Water sanitation and hygiene,Submersible pump,,Yes
-Water sanitation and hygiene,Toilet,,Yes
-Water sanitation and hygiene,Water source,,Yes
-Water sanitation and hygiene,Water trucking,,Yes
-Camp,IDP refugee camp,,Yes
-Camp,Permanent camp,,Yes
-Camp,Registration,,Yes
-Camp,Spontaneous site,,Yes
-Camp,Temporary camp,,Yes
-Camp,Transition site,,Yes
-Security and incident,Abduction kidnapping,,Yes
-Security and incident,Arrest detention,,Yes
-Security and incident,Assault,,Yes
-Security and incident,Attack,,Yes
-Security and incident,Carjacking,,Yes
-Security and incident,Confined,,Yes
-Security and incident,Dangerous area,,Yes
-Security and incident,Forced entry,,Yes
-Security and incident,Forced recruitment,,Yes
-Security and incident,Gender based violence,,Yes
-Security and incident,Harassment intimidation,,Yes
-Security and incident,House burned,,Yes
-Security and incident,Mine,,Yes
-Security and incident,Murder,,Yes
-Security and incident,Robbery,,Yes
-Security and incident,Sexual violence,,Yes
-Physical barriers,Border crossing,,Yes
-Physical barriers,Checkpoint,,Yes
-Physical barriers,Earthmound,,Yes
-Physical barriers,Military gate,,Yes
-Physical barriers,Observation tower,,Yes
-Physical barriers,Roadblock,,Yes
-Physical barriers,Road barrier,,Yes
-Physical barriers,Physical closure,,Yes
-Damage,Airport affected,,Yes
-Damage,Airport destroyed,,Yes
-Damage,Airport not affected,,Yes
-Damage,Bridge affected,,Yes
-Damage,Bridge destroyed,,Yes
-Damage,Bridge not affected,,Yes
-Damage,Building facility affected,,Yes
-Damage,Building facility destroyed,,Yes
-Damage,Building facility not affected,,Yes
-Damage,Damaged Affected,,Yes
-Damage,Destroyed,,Yes
-Damage,Health facility affected,,Yes
-Damage,Health facility destroyed,,Yes
-Damage,Health facility not affected,,Yes
-Damage,House affected,,Yes
-Damage,House destroyed,,Yes
-Damage,House not affected,,Yes
-Damage,Not affected,,Yes
-Damage,Port affected,,Yes
-Damage,Port destroyed,,Yes
-Damage,Port not affected,,Yes
-Damage,Power electricity affected,,Yes
-Damage,Power electricity not affected,,Yes
-Damage,Power outage,,Yes
-Damage,Road affected,,Yes
-Damage,Road destroyed,,Yes
-Damage,Road not affected,,Yes
-Damage,School affected,,Yes
-Damage,School destroyed,,Yes
-Damage,School not affected,,Yes
-General infrastructure,Assembly point,,Yes
-General infrastructure,Buddhist temple,,Yes
-General infrastructure,Building,,Yes
-General infrastructure,Church,,Yes
-General infrastructure,Clinic,,Yes
-General infrastructure,Community building,,Yes
-General infrastructure,Country,,Yes
-General infrastructure,Diplomatic mission,,Yes
-General infrastructure,Distribution site,,Yes
-General infrastructure,Food warehouse,,Yes
-General infrastructure,Government office,,Yes
-General infrastructure,Health facility,,Yes
-General infrastructure,Health post,,Yes
-General infrastructure,Hindu temple,,Yes
-General infrastructure,Hospital,,Yes
-General infrastructure,Hotel,,Yes
-General infrastructure,House,,Yes
-General infrastructure,Infrastructure,,Yes
-General infrastructure,Mobile clinic,,Yes
-General infrastructure,Mosque,,Yes
-General infrastructure,NGO office,,Yes
-General infrastructure,Oil facility,,No
-General infrastructure,Police station,,Yes
-General infrastructure,Power electricity,,Yes
-General infrastructure,School,,Yes
-General infrastructure,UN compound office,,Yes
-General infrastructure,University,,Yes
-Logistics,Airport,,Yes
-Logistics,Airport military,,Yes
-Logistics,Boat,,Yes
-Logistics,Bridge,,Yes
-Logistics,Bus,,Yes
-Logistics,Car,,Yes
-Logistics,Ferry,,Yes
-Logistics,Gas station,,Yes
-Logistics,UN vehicle,,Yes
-Logistics,Helicopter,,Yes
-Logistics,Helipad,,Yes
-Logistics,Port,,Yes
-Logistics,Ship,,Yes
-Logistics,Road,,Yes
-Logistics,Train,,Yes
-Logistics,Truck,,Yes
-Logistics,Tunnel,,Yes
-Telecommunications and technology,Cell tower,,Yes
-Telecommunications and technology,Computer,,Yes
-Telecommunications and technology,E mail,,Yes
-Telecommunications and technology,Fax,,Yes
-Telecommunications and technology,Internet,,Yes
-Telecommunications and technology,Laptop,,Yes
-Telecommunications and technology,Mobile phone,,Yes
-Telecommunications and technology,Monitor,,Yes
-Telecommunications and technology,Radio,,Yes
-Telecommunications and technology,Remote-support,,Yes
-Telecommunications and technology,Satellite dish,,Yes
-Telecommunications and technology,Smartphone,,Yes
-Telecommunications and technology,Walkie talkie,,Yes
-Telecommunications and technology,Work-from-home,,Yes
-UX UI,About,,Yes
-UX UI,Add,,Yes
-UX UI,Add document,,Yes
-UX UI,Alert,,Yes
-UX UI,Blog,,Yes
-UX UI,Bookmark,,Yes
-UX UI,Chat,,Yes
-UX UI,Copy,,Yes
-UX UI,Down ,,Yes
-UX UI,Download,,Yes
-UX UI,Exit-Cancel,,Yes
-UX UI,Favourite,,Yes
-UX UI,Filter,,Yes
-UX UI,Folder,,Yes
-UX UI,Go,,Yes
-UX UI,Group,,Yes
-UX UI,Help,,Yes
-UX UI,Hide,,Yes
-UX UI,Link,,Yes
-UX UI,Menu,,Yes
-UX UI,More options,,Yes
-UX UI,Next item,,Yes
-UX UI,Notification,,Yes
-UX UI,Out of platform,,Yes
-UX UI,Pause,,Yes
-UX UI,Previous item,,Yes
-UX UI,Print,,Yes
-UX UI,Remove,,Yes
-UX UI,Remove document,,Yes
-UX UI,Return,,Yes
-UX UI,Save,,Yes
-UX UI,Search,,Yes
-UX UI,See,,Yes
-UX UI,Selected,,Yes
-UX UI,Settings,,Yes
-UX UI,Share,,Yes
-UX UI,Stop,,Yes
-UX UI,Trending,,Yes
-UX UI,Up,,Yes
-UX UI,Upload,,Yes
-UX UI,User,,Yes
-UX UI,Users,,Yes
-UX UI,Warning-Error,,Yes
-UX UI,ZIP-compressed,,Yes
-Health,Bacteria,,No
-Health,Case-management,,Yes
-Health,COVID-19,,Yes
-Health,Doctor,,Yes
-Health,Handwashing,,Yes
-Health,Health-worker,,Yes
-Health,Hospital-bed,,Yes
-Health,Infected,,Yes
-Health,Infection-control,,Yes
-Health,Laboratory,,Yes
-Health,Life-saving,,Yes
-Health,Market,,Yes
-Health,Mask,,Yes
-Health,Not-infected,,Yes
-Health,Respiratory,,Yes
-Health,Sanitizer,,Yes
-Health,Social-distancing,,Yes
-Health,Testing,,Yes
-Health,Ventilator,,Yes
-Health,Virus,,No
-Lockdown,House-lockdown,,Yes
-Lockdown,Border-closed,,Yes
-Lockdown,Building-closed,,Yes
-Lockdown,Market-closed,,Yes
-Lockdown,Airport-closed,,Yes
-Lockdown,School-closed,,Yes
-Lockdown,Location-lockdown,,Yes
-Lockdown,Port-closed,,Yes
-Lockdown,Road-closed,,Yes
-Lockdown,Bridge-closed,,Yes
-UX UI,AI chat,,
-UX UI,Time,,No
-UX UI,Password,,
-UX UI,Edit,,
-UX UI,Security,,
-UX UI,Secured,,
-UX UI,Apps,,
-UX UI,Delete-account,,
-UX UI,Validate-account,,
-UX UI,Checked-mail,,
-UX UI,Not-secured,,
-UX UI,Expand-up,,
-UX UI,Expand-right,,
-UX UI,Expand-left,,
-UX UI,Expand-down,,
-UX UI,CSV-file,,
-UX UI,PDF-file,,
-UX UI,XLSX-file,,
-UX UI,DOCX-file,,
-,,,
-,,,
-,,,
-,,,
-,,,
-,,,
+﻿Family,Icon Name
+Clusters,Camp Coordination and Camp Management (CCCM)
+Clusters,Early Recovery
+Clusters,Education
+Clusters,Emergency Telecommunications
+Clusters,Food Security
+Clusters,Health
+Clusters,Logistics
+Clusters,Nutrition
+Clusters,Protection
+Clusters,Shelter
+Clusters,Water Sanitation and Hygiene
+Others,Agriculture
+Others,Child care Child friendly
+Others,Child protection
+Others,Coordination
+Others,Environment
+Others,Fishery
+Others,Logistics and Telecommunications
+Others,Multicluster sector
+Others,Rule of law and justice
+Others,Safety and security
+Others,"Shelter, Land and Camp Coordination"
+"Disasters, hazards and crises",Anticipatory Action
+"Disasters, hazards and crises",Cold wave
+"Disasters, hazards and crises",Conflict
+"Disasters, hazards and crises",Cyclone
+"Disasters, hazards and crises",Drought
+"Disasters, hazards and crises",Earthquake
+"Disasters, hazards and crises",Epidemic
+"Disasters, hazards and crises",Famine
+"Disasters, hazards and crises",Fire
+"Disasters, hazards and crises",Flash flood
+"Disasters, hazards and crises",Flood
+"Disasters, hazards and crises",Heatwave
+"Disasters, hazards and crises",Heavy rain
+"Disasters, hazards and crises",Humanitarian access
+"Disasters, hazards and crises",Insect infestation
+"Disasters, hazards and crises",Internally displaced
+"Disasters, hazards and crises",Landslide mudslide
+"Disasters, hazards and crises",Locust infestation
+"Disasters, hazards and crises",Population return
+"Disasters, hazards and crises",Poverty
+"Disasters, hazards and crises",Refugee
+"Disasters, hazards and crises",Resilience
+"Disasters, hazards and crises",Snow avalanche
+"Disasters, hazards and crises",Snowfall
+"Disasters, hazards and crises",Storm
+"Disasters, hazards and crises",Storm surge
+"Disasters, hazards and crises",Technological disaster
+"Disasters, hazards and crises",Tornado
+"Disasters, hazards and crises",Tsunami
+"Disasters, hazards and crises",Violent wind
+"Disasters, hazards and crises",Volcano
+"Disasters, hazards and crises",Worm infestation
+Socioeconomic and development,Debris management
+Socioeconomic and development,Livelihood
+Socioeconomic and development,Livestock
+Socioeconomic and development,Population growth
+Socioeconomic and development,Reconstruction
+Socioeconomic and development,Rural
+Socioeconomic and development,Rural exodus
+Socioeconomic and development,Trade and market
+Socioeconomic and development,Urban
+Socioeconomic and development,Urban rural
+People,Affected population
+People,Child combatant
+People,Children
+People,Dead
+People,Drowned
+People,Elderly
+People,Gender
+People,Indigenous people
+People,Infant
+People,Injured
+People,Missing
+People,National army
+People,Peacekeeping force
+People,People affected
+People,People covered
+People,People in need
+People,People in need 2
+People,People reached
+People,People targeted
+People,People targeted 2
+People,People with physical impairments
+People,Person 1
+People,Person 2
+People,Pregnant
+People,Rebel
+People,Sex
+Activities Strategy,Advocacy
+Activities Strategy,Agile
+Activities Strategy,Analysis
+Activities Strategy,Assessment
+Activities Strategy,Cash transfer
+Activities Strategy,Civil military coordination
+Activities Strategy,Community engagement
+Activities Strategy,Coordinated assessment
+Activities Strategy,Deployment
+Activities Strategy,Financing
+Activities Strategy,Fund
+Activities Strategy,Gap analysis
+Activities Strategy,Humanitarian programme cycle
+Activities Strategy,Information management
+Activities Strategy,Information technology
+Activities Strategy,Innovation
+Activities Strategy,Leadership
+Activities Strategy,Learning
+Activities Strategy,Meeting
+Activities Strategy,Monitoring
+Activities Strategy,Needs assessment
+Activities Strategy,Partnership
+Activities Strategy,Policy
+Activities Strategy,Preparedness
+Activities Strategy,Public information
+Activities Strategy,Reporting
+Activities Strategy,Response
+Activities Strategy,Scale down operation
+Activities Strategy,Scale up operation
+Activities Strategy,Search-and-rescue
+Activities Strategy,Services and tools
+Activities Strategy,Sexual and reproductive health
+Activities Strategy,Staff management
+Activities Strategy,Top Ranking
+Activities Strategy,Training
+Product type,Calendar
+Product type,Chart
+Product type,Data
+Product type,Document
+Product type,Film
+Product type,Location
+Product type,Map
+Product type,Photo
+Product type,Report
+Product type,Table
+Product type,Video
+Food and non-food items,Blanket
+Food and non-food items,Bottled water
+Food and non-food items,Bucket
+Food and non-food items,Clothing
+Food and non-food items,Detergent
+Food and non-food items,Flour
+Food and non-food items,Food
+Food and non-food items,Infant feeding bottle
+Food and non-food items,Kitchen set
+Food and non-food items,Mattress
+Food and non-food items,Medical supply
+Food and non-food items,Medicine
+Food and non-food items,Mosquito net
+Food and non-food items,Non food items
+Food and non-food items,Non food items 2
+Food and non-food items,Oil
+Food and non-food items,Plastic sheeting
+Food and non-food items,Relief goods
+Food and non-food items,Rice
+Food and non-food items,Salt
+Food and non-food items,Soap
+Food and non-food items,Stove
+Food and non-food items,Sugar
+Food and non-food items,Tarpaulin
+Food and non-food items,Tent
+Food and non-food items,Vaccine
+Water sanitation and hygiene,Borehole
+Water sanitation and hygiene,Communal latrine
+Water sanitation and hygiene,Latrine cabin
+Water sanitation and hygiene,Potable water
+Water sanitation and hygiene,Potable water source
+Water sanitation and hygiene,Sanitation
+Water sanitation and hygiene,Shower
+Water sanitation and hygiene,Solid waste
+Water sanitation and hygiene,Spring water
+Water sanitation and hygiene,Submersible pump
+Water sanitation and hygiene,Toilet
+Water sanitation and hygiene,Water source
+Water sanitation and hygiene,Water trucking
+Camp,IDP refugee camp
+Camp,Permanent camp
+Camp,Registration
+Camp,Spontaneous site
+Camp,Temporary camp
+Camp,Transition site
+Security and incident,Abduction kidnapping
+Security and incident,Arrest detention
+Security and incident,Assault
+Security and incident,Attack
+Security and incident,Carjacking
+Security and incident,Confined
+Security and incident,Dangerous area
+Security and incident,Forced entry
+Security and incident,Forced recruitment
+Security and incident,Gender based violence
+Security and incident,Harassment intimidation
+Security and incident,House burned
+Security and incident,Mine
+Security and incident,Murder
+Security and incident,Robbery
+Security and incident,Sexual violence
+Physical barriers,Border crossing
+Physical barriers,Checkpoint
+Physical barriers,Earthmound
+Physical barriers,Military gate
+Physical barriers,Observation tower
+Physical barriers,Roadblock
+Physical barriers,Road barrier
+Physical barriers,Physical closure
+Damage,Airport affected
+Damage,Airport destroyed
+Damage,Airport not affected
+Damage,Bridge affected
+Damage,Bridge destroyed
+Damage,Bridge not affected
+Damage,Building facility affected
+Damage,Building facility destroyed
+Damage,Building facility not affected
+Damage,Damaged Affected
+Damage,Destroyed
+Damage,Health facility affected
+Damage,Health facility destroyed
+Damage,Health facility not affected
+Damage,House affected
+Damage,House destroyed
+Damage,House not affected
+Damage,Not affected
+Damage,Port affected
+Damage,Port destroyed
+Damage,Port not affected
+Damage,Power electricity affected
+Damage,Power electricity not affected
+Damage,Power outage
+Damage,Road affected
+Damage,Road destroyed
+Damage,Road not affected
+Damage,School affected
+Damage,School destroyed
+Damage,School not affected
+General infrastructure,Assembly point
+General infrastructure,Buddhist temple
+General infrastructure,Building
+General infrastructure,Church
+General infrastructure,Clinic
+General infrastructure,Community building
+General infrastructure,Country
+General infrastructure,Diplomatic mission
+General infrastructure,Distribution site
+General infrastructure,Food warehouse
+General infrastructure,Government office
+General infrastructure,Health facility
+General infrastructure,Health post
+General infrastructure,Hindu temple
+General infrastructure,Hospital
+General infrastructure,Hotel
+General infrastructure,House
+General infrastructure,Infrastructure
+General infrastructure,Mobile clinic
+General infrastructure,Mosque
+General infrastructure,NGO office
+General infrastructure,Oil facility
+General infrastructure,Police station
+General infrastructure,Power electricity
+General infrastructure,School
+General infrastructure,UN compound office
+General infrastructure,University
+Logistics,Airport
+Logistics,Airport military
+Logistics,Boat
+Logistics,Bridge
+Logistics,Bus
+Logistics,Car
+Logistics,Ferry
+Logistics,Gas station
+Logistics,UN vehicle
+Logistics,Helicopter
+Logistics,Helipad
+Logistics,Port
+Logistics,Ship
+Logistics,Road
+Logistics,Train
+Logistics,Truck
+Logistics,Tunnel
+Telecommunications and technology,Cell tower
+Telecommunications and technology,Computer
+Telecommunications and technology,E mail
+Telecommunications and technology,Fax
+Telecommunications and technology,Internet
+Telecommunications and technology,Laptop
+Telecommunications and technology,Mobile phone
+Telecommunications and technology,Monitor
+Telecommunications and technology,Radio
+Telecommunications and technology,Remote-support
+Telecommunications and technology,Satellite dish
+Telecommunications and technology,Smartphone
+Telecommunications and technology,Walkie talkie
+Telecommunications and technology,Work-from-home
+UX UI,About
+UX UI,Add
+UX UI,Add document
+UX UI,Alert
+UX UI,Blog
+UX UI,Bookmark
+UX UI,Chat
+UX UI,Copy
+UX UI,Down 
+UX UI,Download
+UX UI,Exit-Cancel
+UX UI,Favourite
+UX UI,Filter
+UX UI,Folder
+UX UI,Go
+UX UI,Group
+UX UI,Help
+UX UI,Hide
+UX UI,Link
+UX UI,Menu
+UX UI,More options
+UX UI,Next item
+UX UI,Notification
+UX UI,Out of platform
+UX UI,Pause
+UX UI,Previous item
+UX UI,Print
+UX UI,Remove
+UX UI,Remove document
+UX UI,Return
+UX UI,Save
+UX UI,Search
+UX UI,See
+UX UI,Selected
+UX UI,Settings
+UX UI,Share
+UX UI,Stop
+UX UI,Trending
+UX UI,Up
+UX UI,Upload
+UX UI,User
+UX UI,Users
+UX UI,Warning-Error
+UX UI,ZIP-compressed
+Health,Bacteria
+Health,Case-management
+Health,COVID-19
+Health,Doctor
+Health,Handwashing
+Health,Health-worker
+Health,Hospital-bed
+Health,Infected
+Health,Infection-control
+Health,Laboratory
+Health,Life-saving
+Health,Market
+Health,Mask
+Health,Not-infected
+Health,Respiratory
+Health,Sanitizer
+Health,Social-distancing
+Health,Testing
+Health,Ventilator
+Health,Virus
+Lockdown,House-lockdown
+Lockdown,Border-closed
+Lockdown,Building-closed
+Lockdown,Market-closed
+Lockdown,Airport-closed
+Lockdown,School-closed
+Lockdown,Location-lockdown
+Lockdown,Port-closed
+Lockdown,Road-closed
+Lockdown,Bridge-closed
+UX UI,AI chat
+UX UI,Time
+UX UI,Password
+UX UI,Edit
+UX UI,Security
+UX UI,Secured
+UX UI,Apps
+UX UI,Delete-account
+UX UI,Validate-account
+UX UI,Checked-mail
+UX UI,Not-secured
+UX UI,Expand-up
+UX UI,Expand-right
+UX UI,Expand-left
+UX UI,Expand-down
+UX UI,CSV-file
+UX UI,PDF-file
+UX UI,XLSX-file
+UX UI,DOCX-file
