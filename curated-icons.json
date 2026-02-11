@@ -486,7 +486,7 @@
     {
       "name": "Camp Coordination and Camp Management (CCCM)",
       "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Camp-Coordination-and-Camp-Management.svg",
-      "verticalAdjustment": 0,
+      "verticalAdjustment": -2,
       "category": "Clusters"
     },
     {
@@ -548,6 +548,198 @@
       "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Water-Sanitation-and-Hygiene.svg",
       "verticalAdjustment": 0,
       "category": "Clusters"
+    },
+    {
+      "name": "Anticipatory Action",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Anticipatory-action.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Cold wave",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Cold-wave.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Conflict",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Conflict.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Cyclone",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Cyclone.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Drought",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Drought.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Earthquake",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Earthquake.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Epidemic",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Epidemic.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Famine",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Famine.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Fire",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Fire.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Flash flood",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Flash-flood.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Flood",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Flood.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Heatwave",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Heatwave.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Heavy rain",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Heavy-rain.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Humanitarian access",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Humanitarian-access.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Insect infestation",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Insect-infestation.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Internally displaced",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Internally-displaced.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Landslide mudslide",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Landslide-mudslide.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Locust infestation",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Locust-infestation.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Population return",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Population-return.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Poverty",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Poverty.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Refugee",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Refugee.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Resilience",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Resilience.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Snow avalanche",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Snow-avalanche.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Snowfall",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Snowfall.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Storm",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Storm.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Storm surge",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Storm-surge.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Technological disaster",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Technological-disaster.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Tornado",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Tornado.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Tsunami",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Tsunami.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Violent wind",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Violent-wind.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Volcano",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Volcano.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
+    },
+    {
+      "name": "Worm infestation",
+      "url": "https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/SVG/UN-blue/Worm-infestation.svg",
+      "verticalAdjustment": 0,
+      "category": "Disasters, hazards and crises"
     }
   ]
 }
