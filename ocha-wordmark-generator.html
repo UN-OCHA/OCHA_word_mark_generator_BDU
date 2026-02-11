@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCHA Wordmark Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #009edb;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: normal;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            font-family: 'Roboto', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #009edb;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 10px;
+        }
+
+        .search-box input {
+            width: 100%;
+        }
+
+        .icon-selector {
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+        }
+
+        .icon-item {
+            border: 2px solid transparent;
+            border-radius: 4px;
+            padding: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            background: #f9f9f9;
+        }
+
+        .icon-item:hover {
+            background: #e8f7fd;
+            border-color: #009edb;
+        }
+
+        .icon-item.selected {
+            background: #009edb;
+            border-color: #007ab8;
+        }
+
+        .icon-item svg {
+            width: 48px;
+            height: 48px;
+            display: block;
+            margin: 0 auto 5px;
+        }
+
+        .icon-item.selected svg path {
+            fill: white !important;
+        }
+
+        .icon-name {
+            font-size: 9px;
+            color: #666;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .icon-item.selected .icon-name {
+            color: white;
+        }
+
+        .preview-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .preview-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        #preview {
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-svg {
+            background: #009edb;
+            color: white;
+        }
+
+        .btn-svg:hover:not(:disabled) {
+            background: #007ab8;
+        }
+
+        .btn-png {
+            background: #333;
+            color: white;
+        }
+
+        .btn-png:hover:not(:disabled) {
+            background: #000;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>UN OCHA Wordmark Generator</h1>
+        <p class="subtitle">Create branded wordmarks using Humanitarian Icons</p>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>1. Select Icon</label>
+                <div class="search-box">
+                    <input type="text" id="iconSearch" placeholder="Search icons...">
+                </div>
+                <div class="icon-selector" id="iconSelector">
+                    <div class="loading">Loading icons...</div>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label>2. Enter Text</label>
+                <input type="text" id="wordmarkText" placeholder="e.g., Humanitarian Country Team Mozambique" value="">
+            </div>
+        </div>
+
+        <div class="preview-section">
+            <h2>Preview</h2>
+            <div id="preview">
+                <p style="color: #999;">Select an icon and enter text to see preview</p>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn-svg" id="downloadSVG" disabled>Download SVG</button>
+            <button class="btn-png" id="downloadPNG" disabled>Download PNG</button>
+        </div>
+    </div>
+
+    <script>
+        let icons = [];
+        let selectedIcon = null;
+        const UN_BLUE = '#009edb';
+
+        function normalizeIconName(value) {
+            return (value || '')
+                .toLowerCase()
+                .replace(/&/g, 'and')
+                .replace(/[\s\-_,.()\/]+/g, '')
+                .trim();
+        }
+
+        function parseCSV(text) {
+            const rows = [];
+            let row = [];
+            let field = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                const next = text[i + 1];
+
+                if (char === '"') {
+                    if (inQuotes && next === '"') {
+                        field += '"';
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    row.push(field);
+                    field = '';
+                } else if ((char === '\n' || char === '\r') && !inQuotes) {
+                    if (char === '\r' && next === '\n') i++;
+                    row.push(field);
+                    const trimmed = row.map(v => v.trim());
+                    if (trimmed.some(v => v.length > 0)) rows.push(trimmed);
+                    row = [];
+                    field = '';
+                } else {
+                    field += char;
+                }
+            }
+
+            if (field.length > 0 || row.length > 0) {
+                row.push(field);
+                const trimmed = row.map(v => v.trim());
+                if (trimmed.some(v => v.length > 0)) rows.push(trimmed);
+            }
+
+            return rows;
+        }
+
+        function humanizeIconNameFromPath(path) {
+            const filename = path.split('/').pop().replace(/\.svg$/i, '');
+            return filename
+                .replace(/[_-]+/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim()
+                .replace(/\b\w/g, c => c.toUpperCase());
+        }
+
+        function isUnBluePath(path) {
+            const lower = path.toLowerCase();
+            return lower.endsWith('.svg') && (lower.includes('/un-blue/') || lower.includes('/un_blue/') || lower.includes('/unblue/'));
+        }
+
+        function repoPathToCdnUrl(path) {
+            const encodedPath = path.split('/').map(part => encodeURIComponent(part)).join('/');
+            return `https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/${encodedPath}`;
+        }
+
+        async function loadIconsFromRepo() {
+            const apiCandidates = [
+                'https://api.github.com/repos/UN-OCHA/humanitarian-icons/git/trees/main?recursive=1',
+                'https://api.github.com/repos/UN-OCHA/humanitarian-icons/git/trees/master?recursive=1'
+            ];
+
+            let treeData = null;
+            let lastError = null;
+
+            for (const url of apiCandidates) {
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    treeData = await response.json();
+                    if (treeData && Array.isArray(treeData.tree)) break;
+                } catch (err) {
+                    lastError = err;
+                }
+            }
+
+            if (!treeData || !Array.isArray(treeData.tree)) {
+                throw lastError || new Error('Could not read repository tree.');
+            }
+
+            const iconMap = new Map();
+            treeData.tree
+                .filter(item => item && item.type === 'blob' && isUnBluePath(item.path || ''))
+                .forEach(item => {
+                    const name = humanizeIconNameFromPath(item.path);
+                    iconMap.set(name, repoPathToCdnUrl(item.path));
+                });
+
+            return iconMap;
+        }
+
+        function parseUrlMappingsFromCSV(csvText) {
+            const iconMap = new Map();
+            const rows = parseCSV(csvText);
+            const header = (rows[0] || []).map(h => h.toLowerCase());
+            const nameIdx = header.indexOf('name');
+            const variantIdx = header.indexOf('variant');
+            const urlIdx = header.indexOf('url');
+
+            if (nameIdx === -1 || variantIdx === -1 || urlIdx === -1) {
+                throw new Error('URL CSV is missing Name/Variant/URL columns.');
+            }
+
+            rows.slice(1).forEach(r => {
+                const name = (r[nameIdx] || '').trim();
+                const variant = (r[variantIdx] || '').trim().toLowerCase().replace(/\s+/g, '-');
+                const url = (r[urlIdx] || '').trim();
+                if ((variant === 'un-blue' || variant === 'unblue') && name && url) {
+                    iconMap.set(name, url);
+                }
+            });
+
+            return iconMap;
+        }
+
+        // Load icons from curated JSON file (or fallback to humanitarian-icons repo)
+        async function loadIcons() {
+            try {
+                // Try to load curated icons first
+                try {
+                    const response = await fetch('./curated-icons.json');
+                    if (response.ok) {
+                        icons = await response.json();
+                        renderIcons(icons);
+                        return;
+                    }
+                } catch (e) {
+                    console.log('No curated-icons.json found, loading from humanitarian-icons repository');
+                }
+
+                const iconMap = new Map();
+                try {
+                    const repoMap = await loadIconsFromRepo();
+                    repoMap.forEach((url, name) => iconMap.set(name, url));
+                } catch (repoErr) {
+                    console.warn('Repo tree fetch failed; trying URL CSV fallback.', repoErr);
+                    const csvSources = [
+                        'https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/OCHA_Humanitarian_Icons_URLs.csv',
+                        'https://raw.githubusercontent.com/UN-OCHA/humanitarian-icons/main/OCHA_Humanitarian_Icons_URLs.csv'
+                    ];
+
+                    let loaded = false;
+                    for (const url of csvSources) {
+                        try {
+                            const response = await fetch(url);
+                            if (!response.ok) continue;
+                            const csvText = await response.text();
+                            const csvMap = parseUrlMappingsFromCSV(csvText);
+                            csvMap.forEach((iconUrl, name) => iconMap.set(name, iconUrl));
+                            loaded = iconMap.size > 0;
+                            if (loaded) break;
+                        } catch (csvErr) {
+                            console.warn('CSV source failed:', url, csvErr);
+                        }
+                    }
+
+                    if (!loaded) {
+                        throw new Error('Could not load icons from the UN-OCHA humanitarian-icons repository.');
+                    }
+                }
+
+                icons = Array.from(iconMap.entries()).map(([name, url]) => ({
+                    name,
+                    url,
+                    verticalAdjustment: 0
+                })).sort((a, b) => a.name.localeCompare(b.name));
+
+                renderIcons(icons);
+            } catch (error) {
+                document.getElementById('iconSelector').innerHTML =
+                    '<div class="loading" style="color: red;">Error loading icons. Please refresh the page.</div>';
+                console.error('Error loading icons:', error);
+            }
+        }
+
+        function renderIcons(iconsToRender) {
+            const container = document.getElementById('iconSelector');
+
+            if (iconsToRender.length === 0) {
+                container.innerHTML = '<div class="no-results">No icons found</div>';
+                return;
+            }
+
+            const grid = document.createElement('div');
+            grid.className = 'icon-grid';
+
+            iconsToRender.forEach(icon => {
+                const item = document.createElement('div');
+                item.className = 'icon-item';
+                item.innerHTML = `
+                    <div class="icon-placeholder" data-url="${icon.url}">
+                        <div style="width: 48px; height: 48px; background: #ddd; margin: 0 auto 5px;"></div>
+                    </div>
+                    <div class="icon-name" title="${icon.name}">${icon.name}</div>
+                `;
+
+                item.addEventListener('click', () => selectIcon(icon, item));
+                grid.appendChild(item);
+
+                // Load SVG asynchronously
+                fetch(icon.url)
+                    .then(r => r.text())
+                    .then(svgText => {
+                        const placeholder = item.querySelector('.icon-placeholder');
+                        placeholder.innerHTML = svgText;
+                    })
+                    .catch(err => console.error('Error loading icon:', err));
+            });
+
+            container.innerHTML = '';
+            container.appendChild(grid);
+        }
+
+        function selectIcon(icon, element) {
+            // Remove previous selection
+            document.querySelectorAll('.icon-item').forEach(item => {
+                item.classList.remove('selected');
+            });
+
+            // Add selection
+            element.classList.add('selected');
+            selectedIcon = icon;
+
+            updatePreview();
+        }
+
+        async function updatePreview() {
+            const text = document.getElementById('wordmarkText').value.trim();
+            const preview = document.getElementById('preview');
+            const downloadSVG = document.getElementById('downloadSVG');
+            const downloadPNG = document.getElementById('downloadPNG');
+
+            if (!selectedIcon || !text) {
+                preview.innerHTML = '<p style="color: #999;">Select an icon and enter text to see preview</p>';
+                downloadSVG.disabled = true;
+                downloadPNG.disabled = true;
+                return;
+            }
+
+            const svg = await generateWordmark();
+            preview.innerHTML = '';
+            preview.appendChild(svg);
+
+            downloadSVG.disabled = false;
+            downloadPNG.disabled = false;
+        }
+
+        async function generateWordmark() {
+            const fontSize = 36; // Fixed font size
+            const spacing = 12; // Fixed spacing from icon box to text
+            const iconBoxWidth = 48; // Fixed 48px width for icon box
+            const iconBoxHeight = 48; // Fixed 48px height for icon box (square)
+            const text = document.getElementById('wordmarkText').value.trim();
+
+            // Fetch the icon SVG
+            const response = await fetch(selectedIcon.url);
+            const iconSVGText = await response.text();
+
+            // Parse the icon SVG to extract the paths
+            const parser = new DOMParser();
+            const iconDoc = parser.parseFromString(iconSVGText, 'image/svg+xml');
+            const iconPaths = iconDoc.querySelectorAll('path, circle, rect, polygon, polyline, line, ellipse');
+
+            // Get the actual bounding box of the icon content
+            const tempSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            tempSvg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+            tempSvg.setAttribute('viewBox', '0 0 48 48');
+            tempSvg.setAttribute('width', '48');
+            tempSvg.setAttribute('height', '48');
+            tempSvg.style.position = 'absolute';
+            tempSvg.style.visibility = 'hidden';
+            document.body.appendChild(tempSvg);
+
+            const tempGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            iconPaths.forEach(path => {
+                const clonedPath = path.cloneNode(true);
+                clonedPath.setAttribute('fill', '#009edb');
+                tempGroup.appendChild(clonedPath);
+            });
+            tempSvg.appendChild(tempGroup);
+
+            const bbox = tempGroup.getBBox();
+            document.body.removeChild(tempSvg);
+
+            // Measure text metrics
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.font = `700 ${fontSize}px Roboto`;
+            const textMetrics = ctx.measureText(text);
+            const textWidth = textMetrics.width;
+
+            // Cap height (uppercase letter height) is approximately 0.7 of font size
+            const capHeight = fontSize * 0.7;
+
+            // Scale icon to fit within the icon box (with some padding)
+            const iconMaxWidth = iconBoxWidth * 0.9; // 90% of box width for padding
+            const iconMaxHeight = iconBoxHeight * 0.9; // 90% of box height for padding
+            const iconScale = Math.min(iconMaxWidth / bbox.width, iconMaxHeight / bbox.height);
+            const scaledIconWidth = bbox.width * iconScale;
+            const scaledIconHeight = bbox.height * iconScale;
+
+            // Get vertical adjustment from curated data (if available)
+            const boxAdjustment = selectedIcon.verticalAdjustment || 0;
+
+            // Position text (always stays in the same position)
+            const textX = iconBoxWidth + spacing;
+            const textBaseline = (iconBoxHeight + capHeight) / 2; // Center baseline with icon box
+
+            // Calculate total dimensions
+            const totalWidth = textX + textWidth;
+            const totalHeight = iconBoxHeight;
+
+            // Right-align icon within the icon box, vertically centered
+            const iconX = iconBoxWidth - scaledIconWidth - (bbox.x * iconScale);
+            const iconY = (iconBoxHeight - scaledIconHeight) / 2 - (bbox.y * iconScale) + boxAdjustment;
+
+            // Create the combined SVG
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+            svg.setAttribute('viewBox', `0 0 ${totalWidth} ${totalHeight}`);
+            svg.setAttribute('width', totalWidth);
+            svg.setAttribute('height', totalHeight);
+
+            // Add icon group with scaling and positioning
+            const iconGroup = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            iconGroup.setAttribute('transform', `translate(${iconX}, ${iconY}) scale(${iconScale})`);
+
+            iconPaths.forEach(path => {
+                const clonedPath = path.cloneNode(true);
+                clonedPath.setAttribute('fill', UN_BLUE);
+                clonedPath.removeAttribute('class');
+                iconGroup.appendChild(clonedPath);
+            });
+
+            svg.appendChild(iconGroup);
+
+            // Add text
+            const textElement = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            textElement.setAttribute('x', textX);
+            textElement.setAttribute('y', textBaseline);
+            textElement.setAttribute('font-family', 'Roboto');
+            textElement.setAttribute('font-weight', '700');
+            textElement.setAttribute('font-size', fontSize);
+            textElement.setAttribute('fill', '#000000');
+            textElement.textContent = text;
+
+            svg.appendChild(textElement);
+
+            return svg;
+        }
+
+        function downloadSVG() {
+            generateWordmark().then(svg => {
+                const svgData = new XMLSerializer().serializeToString(svg);
+                const blob = new Blob([svgData], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(blob);
+
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${sanitizeFilename(document.getElementById('wordmarkText').value)}-wordmark.svg`;
+                a.click();
+
+                URL.revokeObjectURL(url);
+            });
+        }
+
+        function downloadPNG() {
+            generateWordmark().then(svg => {
+                const svgData = new XMLSerializer().serializeToString(svg);
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                const img = new Image();
+                const blob = new Blob([svgData], { type: 'image/svg+xml' });
+                const url = URL.createObjectURL(blob);
+
+                img.onload = function() {
+                    // Set canvas size to 2x for better quality
+                    canvas.width = img.width * 2;
+                    canvas.height = img.height * 2;
+                    ctx.scale(2, 2);
+                    ctx.drawImage(img, 0, 0);
+
+                    canvas.toBlob(function(pngBlob) {
+                        const pngUrl = URL.createObjectURL(pngBlob);
+                        const a = document.createElement('a');
+                        a.href = pngUrl;
+                        a.download = `${sanitizeFilename(document.getElementById('wordmarkText').value)}-wordmark.png`;
+                        a.click();
+
+                        URL.revokeObjectURL(url);
+                        URL.revokeObjectURL(pngUrl);
+                    });
+                };
+
+                img.src = url;
+            });
+        }
+
+        function sanitizeFilename(text) {
+            return text.replace(/[^a-z0-9]/gi, '-').toLowerCase().substring(0, 50);
+        }
+
+        // Event listeners
+        document.getElementById('wordmarkText').addEventListener('input', updatePreview);
+        document.getElementById('downloadSVG').addEventListener('click', downloadSVG);
+        document.getElementById('downloadPNG').addEventListener('click', downloadPNG);
+
+        // Search functionality
+        document.getElementById('iconSearch').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filtered = icons.filter(icon =>
+                icon.name.toLowerCase().includes(searchTerm)
+            );
+            renderIcons(filtered);
+        });
+
+        // Initialize
+        loadIcons();
+    </script>
+</body>
+</html>

@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCHA Icon Curator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            color: #009edb;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 700;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #009edb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #007ab8;
+        }
+
+        .btn-secondary {
+            background: #666;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #333;
+        }
+
+        .stats {
+            background: #f0f0f0;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .stats span {
+            font-weight: 700;
+            color: #009edb;
+        }
+
+        .category-section {
+            margin-bottom: 30px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .category-header {
+            background: #009edb;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .category-header:hover {
+            background: #007ab8;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .category-title input[type="text"] {
+            background: white;
+            color: #333;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 700;
+            width: 300px;
+        }
+
+        .category-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .category-controls input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .category-controls button {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        .category-count {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+        }
+
+        .category-body {
+            padding: 20px;
+            background: #f9f9f9;
+        }
+
+        .category-body.collapsed {
+            display: none;
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .icon-card {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .icon-card-header {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .icon-preview {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-size: 10px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+        }
+
+        .icon-preview svg {
+            max-width: 48px;
+            max-height: 48px;
+        }
+
+        .icon-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .icon-name {
+            font-weight: 600;
+            font-size: 13px;
+            word-break: break-word;
+        }
+
+        .icon-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .icon-controls label {
+            font-size: 11px;
+            color: #666;
+        }
+
+        input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        input[type="number"] {
+            width: 60px;
+            padding: 4px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        select {
+            padding: 4px 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 12px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .uncategorized {
+            background: #e0e0e0;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        .btn-delete:hover {
+            background: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>OCHA Icon Curator</h1>
+        <p class="subtitle">Organize icons by category and configure vertical adjustments for wordmark generation</p>
+
+        <div class="actions">
+            <button class="btn-primary" onclick="addCategory()">+ Add Category</button>
+            <button class="btn-secondary" onclick="expandAll()">Expand All</button>
+            <button class="btn-secondary" onclick="collapseAll()">Collapse All</button>
+            <button class="btn-primary" onclick="exportJSON()">Export JSON</button>
+            <button class="btn-secondary" onclick="importJSON()">Import JSON</button>
+        </div>
+
+        <div class="stats">
+            <span id="selectedCount">0</span> icons selected out of <span id="totalCount">0</span> total
+        </div>
+
+        <div id="categoriesContainer">
+            <div class="loading">Loading icons...</div>
+        </div>
+    </div>
+
+    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="handleImport(event)">
+    <input type="file" id="familyCsvFile" accept=".csv,text/csv" style="display: none;" onchange="handleFamilyCSVImport(event)">
+    <input type="file" id="urlCsvFile" accept=".csv,text/csv" style="display: none;" onchange="handleUrlCSVImport(event)">
+
+    <script>
+        let icons = [];
+        let categories = [];
+        let csvFamilyOrder = [];
+        let pendingFamilyCSVText = null;
+
+        function normalizeIconName(value) {
+            return (value || '')
+                .toLowerCase()
+                .replace(/&/g, 'and')
+                .replace(/[\s\-_,.()\/]+/g, '')
+                .trim();
+        }
+
+        function buildNormalizedCandidates(name) {
+            const variants = new Set();
+            const base = (name || '').trim();
+            if (!base) return [];
+
+            variants.add(base);
+            // Match CSV names like "... (CCCM)" to repo filenames without abbreviation suffixes
+            variants.add(base.replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s+/g, ' ').trim());
+
+            const normalized = [];
+            variants.forEach(v => {
+                const n = normalizeIconName(v);
+                if (n) normalized.push(n);
+            });
+            return Array.from(new Set(normalized));
+        }
+
+        function parseCSV(text) {
+            const rows = [];
+            let row = [];
+            let field = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                const next = text[i + 1];
+
+                if (char === '"') {
+                    if (inQuotes && next === '"') {
+                        field += '"';
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    row.push(field);
+                    field = '';
+                } else if ((char === '\n' || char === '\r') && !inQuotes) {
+                    if (char === '\r' && next === '\n') i++;
+                    row.push(field);
+                    const trimmed = row.map(v => v.trim());
+                    if (trimmed.some(v => v.length > 0)) {
+                        rows.push(trimmed);
+                    }
+                    row = [];
+                    field = '';
+                } else {
+                    field += char;
+                }
+            }
+
+            if (field.length > 0 || row.length > 0) {
+                row.push(field);
+                const trimmed = row.map(v => v.trim());
+                if (trimmed.some(v => v.length > 0)) {
+                    rows.push(trimmed);
+                }
+            }
+
+            return rows;
+        }
+
+        function showFamilyCSVPicker(message) {
+            document.getElementById('categoriesContainer').innerHTML = `
+                <div class="loading" style="color: #333;">
+                    ${message}<br><br>
+                    <button class="btn-primary" onclick="document.getElementById('familyCsvFile').click()">Select Humanitarian_icons_2026.csv</button>
+                </div>
+            `;
+        }
+
+        function parseUrlMappingsFromCSV(csvText) {
+            const exactUrlMap = new Map();
+            const normalizedUrlMap = new Map();
+            const urlRows = parseCSV(csvText);
+            const urlHeader = (urlRows[0] || []).map(h => h.toLowerCase());
+            const nameIdx = urlHeader.indexOf('name');
+            const variantIdx = urlHeader.indexOf('variant');
+            const urlIdx = urlHeader.indexOf('url');
+
+            if (nameIdx === -1 || variantIdx === -1 || urlIdx === -1) {
+                throw new Error('Icon URL CSV is missing required columns (Name, Variant, URL).');
+            }
+
+            urlRows.slice(1).forEach(parts => {
+                const name = (parts[nameIdx] || '').trim();
+                const variant = (parts[variantIdx] || '').trim().toLowerCase().replace(/\s+/g, '-');
+                const url = (parts[urlIdx] || '').trim();
+
+                if ((variant === 'un-blue' || variant === 'unblue') && name && url) {
+                    exactUrlMap.set(name, url);
+                    normalizedUrlMap.set(normalizeIconName(name), url);
+                }
+            });
+
+            return { exactUrlMap, normalizedUrlMap };
+        }
+
+        function humanizeIconNameFromPath(path) {
+            const filename = path.split('/').pop().replace(/\.svg$/i, '');
+            return filename
+                .replace(/[_-]+/g, ' ')
+                .replace(/\s+/g, ' ')
+                .trim()
+                .replace(/\b\w/g, c => c.toUpperCase());
+        }
+
+        function isUnBluePath(path) {
+            const lower = path.toLowerCase();
+            return lower.endsWith('.svg') && (lower.includes('/un-blue/') || lower.includes('/un_blue/') || lower.includes('/unblue/'));
+        }
+
+        function repoPathToCdnUrl(path) {
+            const encodedPath = path.split('/').map(part => encodeURIComponent(part)).join('/');
+            return `https://cdn.jsdelivr.net/gh/UN-OCHA/humanitarian-icons@main/${encodedPath}`;
+        }
+
+        async function loadRepoIconMappings() {
+            const apiCandidates = [
+                'https://api.github.com/repos/UN-OCHA/humanitarian-icons/git/trees/main?recursive=1',
+                'https://api.github.com/repos/UN-OCHA/humanitarian-icons/git/trees/master?recursive=1'
+            ];
+            let treeData = null;
+            let lastError = null;
+
+            for (const url of apiCandidates) {
+                try {
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    treeData = await response.json();
+                    if (treeData && Array.isArray(treeData.tree)) break;
+                    throw new Error('Invalid tree payload');
+                } catch (err) {
+                    lastError = err;
+                }
+            }
+
+            if (!treeData || !Array.isArray(treeData.tree)) {
+                throw lastError || new Error('Could not read repository tree.');
+            }
+
+            const exactUrlMap = new Map();
+            const normalizedUrlMap = new Map();
+
+            treeData.tree
+                .filter(item => item && item.type === 'blob' && isUnBluePath(item.path || ''))
+                .forEach(item => {
+                    const name = humanizeIconNameFromPath(item.path);
+                    const cdnUrl = repoPathToCdnUrl(item.path);
+                    exactUrlMap.set(name, cdnUrl);
+                    normalizedUrlMap.set(normalizeIconName(name), cdnUrl);
+                });
+
+            return { exactUrlMap, normalizedUrlMap };
+        }
+
+        function showUrlCSVHint() {
+            const stats = document.querySelector('.stats');
+            if (!stats) return;
+            const existing = document.getElementById('urlCsvHint');
+            if (existing) existing.remove();
+            stats.insertAdjacentHTML(
+                'beforeend',
+                `<div id="urlCsvHint" style="margin-top:8px;color:#b45309;font-weight:600;">Could not load icon files from the humanitarian-icons repository. <button class="btn-secondary" style="margin-left:8px;padding:6px 10px;font-size:12px;" onclick="document.getElementById('urlCsvFile').click()">Select OCHA_Humanitarian_Icons_URLs.csv</button></div>`
+            );
+        }
+
+        async function loadIcons(overrideFamilyCSV = null, overrideUrlCSV = null) {
+            try {
+                // Load Family/Icon source of truth from local CSV
+                let categoryCSV = '';
+                if (overrideFamilyCSV) {
+                    categoryCSV = overrideFamilyCSV.replace(/^\uFEFF/, '');
+                } else {
+                    try {
+                        const categoryResponse = await fetch('./Humanitarian_icons_2026.csv');
+                        if (!categoryResponse.ok) {
+                            throw new Error(`HTTP ${categoryResponse.status}`);
+                        }
+                        categoryCSV = (await categoryResponse.text()).replace(/^\uFEFF/, '');
+                    } catch (err) {
+                        console.error('Could not auto-load Humanitarian_icons_2026.csv:', err);
+                        showFamilyCSVPicker('Could not load <strong>Humanitarian_icons_2026.csv</strong> automatically.');
+                        return;
+                    }
+                }
+                const categoryRows = parseCSV(categoryCSV);
+                pendingFamilyCSVText = categoryCSV;
+
+                if (categoryRows.length < 2) {
+                    throw new Error('Family mapping CSV is empty or invalid.');
+                }
+
+                const header = categoryRows[0].map(h => h.toLowerCase());
+                const familyIdx = header.indexOf('family');
+                const iconIdx = header.indexOf('icon name');
+
+                if (familyIdx === -1 || iconIdx === -1) {
+                    throw new Error('CSV must include "Family" and "Icon Name" columns.');
+                }
+
+                const familyIconRows = categoryRows
+                    .slice(1)
+                    .map(r => ({
+                        family: (r[familyIdx] || '').trim(),
+                        iconName: (r[iconIdx] || '').trim()
+                    }))
+                    .filter(r => r.family && r.iconName);
+
+                const familySet = new Set();
+                csvFamilyOrder = [];
+                familyIconRows.forEach(r => {
+                    if (!familySet.has(r.family)) {
+                        familySet.add(r.family);
+                        csvFamilyOrder.push(r.family);
+                    }
+                });
+
+                let exactUrlMap = new Map();
+                let normalizedUrlMap = new Map();
+                try {
+                    if (overrideUrlCSV) {
+                        ({ exactUrlMap, normalizedUrlMap } = parseUrlMappingsFromCSV(overrideUrlCSV));
+                    } else {
+                        ({ exactUrlMap, normalizedUrlMap } = await loadRepoIconMappings());
+                    }
+                } catch (err) {
+                    console.warn('Could not load icon URLs from repository. Continuing without previews/URLs.', err);
+                    showUrlCSVHint();
+                }
+
+                const usedNames = new Set();
+
+                icons = familyIconRows.map(({ family, iconName }) => {
+                    const candidates = buildNormalizedCandidates(iconName);
+                    let url = exactUrlMap.get(iconName) || '';
+                    if (!url) {
+                        for (const candidate of candidates) {
+                            const match = normalizedUrlMap.get(candidate);
+                            if (match) {
+                                url = match;
+                                break;
+                            }
+                        }
+                    }
+
+                    usedNames.add(iconName);
+                    return {
+                        name: iconName,
+                        url,
+                        included: true,
+                        verticalAdjustment: 0,
+                        category: family
+                    };
+                });
+
+                // Do not auto-add repository icons that are not in the Family/Icon CSV.
+                // This keeps curator structure aligned with the spreadsheet.
+
+                buildCategoriesFromIcons();
+                renderCategories();
+                updateStats();
+            } catch (error) {
+                document.getElementById('categoriesContainer').innerHTML =
+                    `<div class="loading" style="color: red;">Error loading icons: ${error.message}</div>`;
+                console.error('Error loading icons:', error);
+            }
+        }
+
+        function handleFamilyCSVImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const csvText = e.target.result;
+                loadIcons(csvText);
+            };
+            reader.readAsText(file);
+        }
+
+        function handleUrlCSVImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const urlCsvText = e.target.result;
+                loadIcons(pendingFamilyCSVText, urlCsvText);
+            };
+            reader.readAsText(file);
+        }
+
+        function buildCategoriesFromIcons() {
+            const categoriesMap = new Map();
+
+            // Start with Family order exactly as provided in CSV
+            csvFamilyOrder.forEach(family => {
+                categoriesMap.set(family, []);
+            });
+
+            icons.forEach(icon => {
+                if (!categoriesMap.has(icon.category)) {
+                    categoriesMap.set(icon.category, []);
+                }
+                categoriesMap.get(icon.category).push(icon);
+            });
+
+            const orderedNames = [];
+
+            csvFamilyOrder.forEach(name => {
+                if (categoriesMap.has(name)) orderedNames.push(name);
+            });
+
+            // Add user-added/renamed categories (except Uncategorized) in alpha order after CSV families
+            const additional = Array.from(categoriesMap.keys())
+                .filter(name => !csvFamilyOrder.includes(name) && name !== 'Uncategorized')
+                .sort((a, b) => a.localeCompare(b));
+            orderedNames.push(...additional);
+
+            if (categoriesMap.has('Uncategorized')) {
+                orderedNames.push('Uncategorized');
+            }
+
+            categories = orderedNames.map(name => ({
+                name,
+                icons: categoriesMap.get(name)
+            }));
+        }
+
+        function renderCategories() {
+            const container = document.getElementById('categoriesContainer');
+            container.innerHTML = '';
+
+            categories.forEach((category, catIndex) => {
+                const section = document.createElement('div');
+                section.className = 'category-section';
+
+                const header = document.createElement('div');
+                header.className = 'category-header' + (category.name === 'Uncategorized' ? ' uncategorized' : '');
+
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'category-title';
+
+                const nameInput = document.createElement('input');
+                nameInput.type = 'text';
+                nameInput.value = category.name;
+                nameInput.onclick = (e) => e.stopPropagation();
+                nameInput.onchange = (e) => {
+                    const oldName = category.name;
+                    const newName = e.target.value;
+                    category.name = newName;
+                    icons.forEach(icon => {
+                        if (icon.category === oldName) {
+                            icon.category = newName;
+                        }
+                    });
+                    buildCategoriesFromIcons();
+                    renderCategories();
+                    updateStats();
+                };
+
+                const count = document.createElement('span');
+                count.className = 'category-count';
+                count.textContent = `${category.icons.length} icons`;
+
+                titleDiv.appendChild(nameInput);
+                titleDiv.appendChild(count);
+
+                const controls = document.createElement('div');
+                controls.className = 'category-controls';
+                controls.onclick = (e) => e.stopPropagation();
+
+                const selectAllLabel = document.createElement('label');
+                selectAllLabel.textContent = 'All: ';
+                selectAllLabel.style.color = 'white';
+                selectAllLabel.style.marginRight = '5px';
+
+                const selectAllCheckbox = document.createElement('input');
+                selectAllCheckbox.type = 'checkbox';
+                selectAllCheckbox.checked = category.icons.length > 0 && category.icons.every(icon => icon.included);
+                selectAllCheckbox.onchange = (e) => {
+                    category.icons.forEach(icon => {
+                        icon.included = e.target.checked;
+                    });
+                    renderCategories();
+                    updateStats();
+                };
+
+                controls.appendChild(selectAllLabel);
+                controls.appendChild(selectAllCheckbox);
+
+                if (category.name !== 'Uncategorized') {
+                    const deleteBtn = document.createElement('button');
+                    deleteBtn.className = 'btn-delete';
+                    deleteBtn.textContent = 'Delete';
+                    deleteBtn.onclick = () => {
+                        if (confirm(`Delete category "${category.name}"? Icons will move to Uncategorized.`)) {
+                            category.icons.forEach(icon => icon.category = 'Uncategorized');
+                            categories.splice(catIndex, 1);
+                            buildCategoriesFromIcons();
+                            renderCategories();
+                            updateStats();
+                        }
+                    };
+                    controls.appendChild(deleteBtn);
+                }
+
+                header.appendChild(titleDiv);
+                header.appendChild(controls);
+
+                header.onclick = () => {
+                    body.classList.toggle('collapsed');
+                };
+
+                const body = document.createElement('div');
+                body.className = 'category-body';
+
+                const grid = document.createElement('div');
+                grid.className = 'icon-grid';
+
+                category.icons.forEach(icon => {
+                    const card = document.createElement('div');
+                    card.className = 'icon-card';
+
+                    const cardHeader = document.createElement('div');
+                    cardHeader.className = 'icon-card-header';
+
+                    const preview = document.createElement('div');
+                    preview.className = 'icon-preview';
+                    if (icon.url) {
+                        fetch(icon.url)
+                            .then(r => r.text())
+                            .then(svgText => {
+                                preview.innerHTML = svgText;
+                            })
+                            .catch(() => {
+                                preview.textContent = 'No preview';
+                            });
+                    } else {
+                        preview.textContent = 'No URL';
+                    }
+
+                    const info = document.createElement('div');
+                    info.className = 'icon-info';
+                    const name = document.createElement('div');
+                    name.className = 'icon-name';
+                    name.textContent = icon.name;
+                    info.appendChild(name);
+
+                    cardHeader.appendChild(preview);
+                    cardHeader.appendChild(info);
+
+                    const controlsDiv = document.createElement('div');
+                    controlsDiv.className = 'icon-controls';
+
+                    const includeCheck = document.createElement('input');
+                    includeCheck.type = 'checkbox';
+                    includeCheck.checked = icon.included;
+                    includeCheck.onchange = (e) => {
+                        icon.included = e.target.checked;
+                        updateStats();
+                    };
+
+                    const adjLabel = document.createElement('label');
+                    adjLabel.textContent = 'V.Adj:';
+
+                    const adjInput = document.createElement('input');
+                    adjInput.type = 'number';
+                    adjInput.value = icon.verticalAdjustment;
+                    adjInput.min = -20;
+                    adjInput.max = 20;
+                    adjInput.step = 1;
+                    adjInput.onchange = (e) => {
+                        icon.verticalAdjustment = parseInt(e.target.value, 10) || 0;
+                    };
+
+                    const catSelect = document.createElement('select');
+                    categories.forEach(cat => {
+                        const option = document.createElement('option');
+                        option.value = cat.name;
+                        option.textContent = cat.name;
+                        option.selected = icon.category === cat.name;
+                        catSelect.appendChild(option);
+                    });
+                    catSelect.onchange = (e) => {
+                        icon.category = e.target.value;
+                        buildCategoriesFromIcons();
+                        renderCategories();
+                    };
+
+                    controlsDiv.appendChild(includeCheck);
+                    controlsDiv.appendChild(adjLabel);
+                    controlsDiv.appendChild(adjInput);
+                    controlsDiv.appendChild(catSelect);
+
+                    card.appendChild(cardHeader);
+                    card.appendChild(controlsDiv);
+
+                    grid.appendChild(card);
+                });
+
+                body.appendChild(grid);
+
+                section.appendChild(header);
+                section.appendChild(body);
+
+                container.appendChild(section);
+            });
+
+            document.getElementById('totalCount').textContent = icons.length;
+        }
+
+        function updateStats() {
+            const selected = icons.filter(icon => icon.included).length;
+            document.getElementById('selectedCount').textContent = selected;
+        }
+
+        function expandAll() {
+            document.querySelectorAll('.category-body').forEach(body => {
+                body.classList.remove('collapsed');
+            });
+        }
+
+        function collapseAll() {
+            document.querySelectorAll('.category-body').forEach(body => {
+                body.classList.add('collapsed');
+            });
+        }
+
+        function addCategory() {
+            const name = prompt('Enter category name:');
+            if (name && name.trim()) {
+                categories.push({ name: name.trim(), icons: [] });
+                renderCategories();
+            }
+        }
+
+        function exportJSON() {
+            const data = {
+                categories: categories.map(cat => ({
+                    name: cat.name,
+                    icons: cat.icons.map(icon => icon.name)
+                })),
+                icons: icons
+                    .filter(icon => icon.included)
+                    .map(icon => ({
+                        name: icon.name,
+                        url: icon.url,
+                        verticalAdjustment: icon.verticalAdjustment,
+                        category: icon.category
+                    }))
+            };
+
+            const json = JSON.stringify(data, null, 2);
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'curated-icons.json';
+            a.click();
+
+            URL.revokeObjectURL(url);
+
+            alert(`Exported ${data.icons.length} icons with ${categories.length} categories to curated-icons.json`);
+        }
+
+        function importJSON() {
+            document.getElementById('importFile').click();
+        }
+
+        function handleImport(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = JSON.parse(e.target.result);
+
+                    if (data.categories) {
+                        categories = data.categories.map(cat => ({ ...cat, icons: [] }));
+                    }
+
+                    if (data.icons) {
+                        // Merge imported data with current icons
+                        data.icons.forEach(importedIcon => {
+                            const existing = icons.find(i => i.name === importedIcon.name);
+                            if (existing) {
+                                existing.included = true;
+                                existing.verticalAdjustment = importedIcon.verticalAdjustment || 0;
+                                existing.category = importedIcon.category || 'Uncategorized';
+                            }
+                        });
+                    }
+
+                    buildCategoriesFromIcons();
+                    renderCategories();
+                    updateStats();
+
+                    alert('Import successful!');
+                } catch (error) {
+                    alert('Error importing file: ' + error.message);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Initialize
+        loadIcons();
+    </script>
+</body>
+</html>
