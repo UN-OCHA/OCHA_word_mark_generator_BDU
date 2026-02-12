@@ -786,10 +786,15 @@
                 const header = document.createElement('div');
                 header.className = 'category-header' + (category.name === 'Uncategorized' ? ' uncategorized' : '');
 
+                // Create body element FIRST so it's available in the closure
+                const body = document.createElement('div');
+                body.className = 'category-body';
+
                 const titleDiv = document.createElement('div');
                 titleDiv.className = 'category-title';
                 titleDiv.style.cursor = 'pointer';
-                titleDiv.onclick = () => {
+                titleDiv.onclick = (e) => {
+                    e.stopPropagation();
                     body.classList.toggle('collapsed');
                 };
 
@@ -827,10 +832,14 @@
                 };
                 selectAllCheckbox.onchange = (e) => {
                     e.stopPropagation();
+                    const checked = e.target.checked;
                     category.icons.forEach(icon => {
-                        icon.included = e.target.checked;
+                        icon.included = checked;
                     });
-                    renderCategories();
+                    // Update individual checkboxes in-place without re-rendering
+                    body.querySelectorAll('.icon-card .icon-controls input[type="checkbox"]').forEach(cb => {
+                        cb.checked = checked;
+                    });
                     updateStats();
                 };
 
@@ -839,9 +848,6 @@
 
                 header.appendChild(titleDiv);
                 header.appendChild(controls);
-
-                const body = document.createElement('div');
-                body.className = 'category-body';
 
                 const grid = document.createElement('div');
                 grid.className = 'icon-grid';
